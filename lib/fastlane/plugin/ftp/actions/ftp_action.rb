@@ -16,7 +16,7 @@ module Fastlane
         ftp = Net::FTP.new
         ftp.connect(params[:host], params[:port])
         ftp.login(params[:username], params[:password])
-        ftp.passive = true
+        ftp.passive = false
         UI.success("Successfully Login to #{params[:host]}:#{params[:port]}")
         parts = folder.split("/")
         growing_path = ""
@@ -37,7 +37,7 @@ module Fastlane
         ftp = Net::FTP.new
         ftp.connect(params[:host], params[:port])
         ftp.login(params[:username], params[:password])
-        ftp.passive = true
+        ftp.passive = false
         ftp.chdir(params[:upload][:dest])
         transferred = 0
         filesize = File.size(params[:upload][:src])
@@ -61,7 +61,7 @@ module Fastlane
 
       def self.get(params)
         ftp = Net::FTP.new
-        ftp.passive = true
+        ftp.passive = false
         ftp.connect(params[:host], params[:port])
         ftp.login(params[:username], params[:password])
         UI.success("Successfully Login to #{params[:host]}:#{params[:port]}")
